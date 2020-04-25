@@ -7,11 +7,33 @@ import json
 import re
 
 string = '''所需资料：
-1、临时困难救助申请书（领表填写）。
-2、丰城市城乡居民临时救助报批表（领表填写）。
-3、申请人及共同生活家庭成员的户口簿、身份证、居住证等复印件各1份、申请人的银行存折（卡）复印件1份。
-4、申请人持有的如城乡低保、农村五保、孤儿、残疾人等证件复印件（有几项提供几项）。
-6、委托申请的提供申请委托书、被委托人身份证复印件1份。'''
+1、 注销表。
+
+
+
+
+2、 死亡证明。
+
+
+
+
+3、 参保人身份证或户口本复印件1份。
+
+
+
+
+4、 继承人身份证或户口本复印件1份。
+
+
+
+
+5、 继承人信用社帐号复印件1份。
+
+
+
+
+6、 参保人与继承人关系证明。
+'''
 
 def to_mp3(string, name):
     url = 'https://aiapi.jd.com/jdai/tts_vip'
@@ -24,7 +46,7 @@ def to_mp3(string, name):
         'Protocol': '1',
         'Net-State': '2',
         'Applicator': '1',
-        'Property': '{"platform":"Linux","version":"0.0.0.1","parameters":{"aue":"3","vol":"1.0","sr":"24000","sp":"0.9","tim":"0","tte":"1"}}',
+        'Property': '{"platform":"Linux","version":"0.0.0.1","parameters":{"aue":"3","vol":"1.0","sr":"24000","sp":"0.8","tim":"0","tte":"1"}}',
         'appkey': 'e408b88d69dcd1039d9a02b7d4a3500b',
         'secretkey': skey,
         'sign': wx_sdk.sign(skey)
@@ -40,7 +62,7 @@ def to_mp3(string, name):
     print('返回状态码是：{}\n调用次数还剩：{}次\n{}'.format(code,remain,msg))
     mp = base64.b64decode(mp)
     print('开始写入……')
-    with open(r'..\{}.mp3'.format(name), 'wb') as mpwrite:
+    with open(r'{}.mp3'.format(name), 'wb') as mpwrite:
         mpwrite.write(mp)
         print('{}\n mp3文件【写入成功！】'.format(name))
 
